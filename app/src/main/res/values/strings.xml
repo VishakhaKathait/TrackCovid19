@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TrackCovid19</string>
+    <string name="title_home">Home</string>
+    <string name="title_country">Country</string>
+    <string name="coronavirus_covid_19_nglobal_cases">Coronavirus COVID-19\nGlobal Cases</string>
+    <string name="total_confirmed">Total Confirmed</string>
+
+</resources>

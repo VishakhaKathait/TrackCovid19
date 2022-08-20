@@ -1,0 +1,29 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TrackCovid19" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorTotalConfirmed</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">#fff</item>
+        <!-- Customize your theme here. -->
+    </style>
+    <style name="BottomNavigationView">
+
+        <item name="fontFamily">@font/rubikregular</item>
+                <item name="android:textSize">10sp</item>
+                <item name="android:textColor">#fff</item>
+
+    </style>
+
+        <style name="LabelFontStyle">
+        <item name="fontFamily">@font/rubikregular</item>
+        <item name="android:textSize">14sp</item>
+
+    </style>
+        <style name="TotalFontStyle">
+        <item name="fontFamily">@font/rubikbold</item>
+        <item name="android:textSize">36sp</item>
+
+    </style>
+</resources>
