@@ -9,10 +9,10 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:gravity="center"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,15 +21,15 @@
             android:fontFamily="@font/rubikbold"
             android:text="Coronavirus COVID-19\nGlobal Cases"
             android:textAlignment="center"
-            android:textColor= "#fff" />
+            android:textColor="#fff" />
 
         <TextView
-        android:id="@+id/tvLabelTotalConfirmed"
-        style="@style/LabelFontStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Total Confirmed"
-        android:textColor="#fff" />
+            android:id="@+id/tvLabelTotalConfirmed"
+            style="@style/LabelFontStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Confirmed"
+            android:textColor="#fff" />
 
         <TextView
             android:id="@+id/tvTotalConfirmed"
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:text="123445342"
             android:textColor="@color/colorTotalConfirmed" />
+
         <TextView
             android:id="@+id/tvLabelTotalDeaths"
             style="@style/LabelFontStyle"
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             android:text="745743"
             android:textColor="@color/colorTotalDeaths" />
+
         <TextView
             android:id="@+id/tvLabelTotalRecovered"
             style="@style/LabelFontStyle"
@@ -68,7 +70,6 @@
             android:layout_height="wrap_content"
             android:text="75938"
             android:textColor="@color/colorTotalRecovered" />
-
 
 
     </LinearLayout>

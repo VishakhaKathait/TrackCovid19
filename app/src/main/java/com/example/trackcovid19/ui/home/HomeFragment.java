@@ -1,5 +1,6 @@
 package com.example.trackcovid19.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,9 +16,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.trackcovid19.R;
+import com.example.trackcovid19.ui.country.CovidCountry;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -62,26 +65,36 @@ public class HomeFragment extends Fragment {
         progressBar = root.findViewById(R.id.progress_circular_home);
 //call volley
 
+//        tvTotalConfirmed.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(root.getContext(), CovidCountry.class);
+//                startActivity(intent);
+//            }
+//        });
+
         getData();
 
         return root;
     }
 
     private void getData() {
+        progressBar.setVisibility(View.VISIBLE);
         RequestQueue queue= Volley.newRequestQueue(getActivity());
 
-        String url=" https://corona.lmao.ninja/v2/all";
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        String url = "https://api.covid19api.com/summary";
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url,null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 progressBar.setVisibility(View.GONE);
 
                 try {
-                    JSONObject jsonObject = new JSONObject(response.toString());
-                    tvTotalConfirmed.setText(jsonObject.getString("cases"));
-                    tvTotalDeaths.setText(jsonObject.getString("deaths"));
-                    tvTotalRecovered.setText(jsonObject.getString("recovered"));
+                    JSONObject newResponse = response.getJSONObject("Global");
+                    tvTotalConfirmed.setText(newResponse.getString("TotalConfirmed"));
+                    tvTotalDeaths.setText(newResponse.getString("TotalDeaths"));
+                    tvTotalRecovered.setText(newResponse.getString("TotalRecovered"));
                 } catch (JSONException e) {
+                    Log.e("ERROR", e.toString());
                     e.printStackTrace();
                 }
             }
@@ -89,11 +102,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                     progressBar.setVisibility(View.GONE);
-                Log.d("Error Response",error.toString());
+                Log.e("Error Response",error.toString());
             }
         });
 
-        queue.add(stringRequest);
+        queue.add(jsonObjectRequest);
     }
 }
 

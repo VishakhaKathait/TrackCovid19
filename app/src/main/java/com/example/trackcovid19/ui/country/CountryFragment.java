@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.trackcovid19.R;
@@ -74,20 +75,22 @@ public class CountryFragment extends Fragment {
     }
 
     private void getDataFromServer() {
-      String url="https://corona.lmao.ninja/countries";
+
+      String url="https://api.covid19api.com/summary";
 
       covidCountries=new ArrayList<>();
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+        JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(String response) {
+            public void onResponse(JSONObject response) {
                 progressBar.setVisibility(View.GONE);
                 if (response != null) {
                     Log.e(TAG, "onResponse: " + response);
                     try {
-                        JSONArray jsonArray = new JSONArray(response);
+                        JSONArray jsonArray = response.getJSONArray("Countries");
+                        Log.e("HELLO", jsonArray.toString());
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject data = jsonArray.getJSONObject(i);
-                            covidCountries.add(new CovidCountry(data.getString("country"), data.getString("cases")));
+                            covidCountries.add(new CovidCountry(data.getString("Country"), data.getString("TotalConfirmed")));
                         }
                         showRecyclerView();
                     } catch (JSONException e) {
@@ -105,6 +108,6 @@ public class CountryFragment extends Fragment {
                     }
                 });
 
-        Volley.newRequestQueue(getActivity()).add(stringRequest);
+        Volley.newRequestQueue(getActivity()).add(jsonObjectRequest);
     }
 }
