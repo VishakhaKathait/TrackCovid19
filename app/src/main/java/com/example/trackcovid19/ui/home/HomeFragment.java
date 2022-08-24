@@ -58,6 +58,8 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         //call view
+
+        // bind with xml nd java
         tvTotalConfirmed = root.findViewById(R.id.tvTotalConfirmed);
         // call view
         tvTotalDeaths = root.findViewById(R.id.tvTotalDeaths);
