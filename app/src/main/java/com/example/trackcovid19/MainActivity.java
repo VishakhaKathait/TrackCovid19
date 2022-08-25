@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     //private ActivityMainBinding binding;
 
     @Override
+   // When an Activity first call or launched then onCreate(Bundle savedInstanceState) method is responsible to create the activity.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
